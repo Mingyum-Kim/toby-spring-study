@@ -6,12 +6,12 @@ import com.toby.spring.user.config.DConnectionMaker;
 
 import java.sql.*;
 
-public abstract class UserDao {
+public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
-    public UserDao(){
-        connectionMaker = new DConnectionMaker();
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     // 사용자 생성

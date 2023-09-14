@@ -2,7 +2,6 @@ package com.toby.spring.user.dao;
 
 import com.toby.spring.user.User;
 import com.toby.spring.user.config.ConnectionMaker;
-import com.toby.spring.user.config.DConnectionMaker;
 
 import java.sql.*;
 
@@ -10,8 +9,14 @@ public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
+    // 생성자를 이용한 의존관계 주입
     public UserDao(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
+    }
+    
+    // 수정자 메소드를 이용한 의존관계 주입
+    public void setConnectionMaker(ConnectionMaker connectionMaker){
+        this.connectionMaker = connectionMaker; 
     }
 
     // 사용자 생성

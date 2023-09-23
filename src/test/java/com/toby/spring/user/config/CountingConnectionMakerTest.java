@@ -1,12 +1,11 @@
 package com.toby.spring.user.config;
 
+import com.toby.spring.config.connection.CountingConnectionMaker;
 import com.toby.spring.user.dao.UserDao;
 import com.toby.spring.user.factory.CountingDaoFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CountingConnectionMakerTest {
 

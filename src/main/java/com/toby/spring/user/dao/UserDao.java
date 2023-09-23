@@ -1,11 +1,22 @@
 package com.toby.spring.user.dao;
 
+import com.toby.spring.config.jdbc.JdbcContext;
 import com.toby.spring.user.User;
-import com.toby.spring.user.config.ConnectionMaker;
+import com.toby.spring.config.connection.ConnectionMaker;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
+
+    private JdbcContext jdbcContext;
+    private DataSource dataSource;
+
+    public void setDataSource(DataSource dataSource){
+        this.jdbcContext = new JdbcContext();
+        this.jdbcContext.setDataSource(dataSource);
+        this.dataSource = dataSource;
+    }
 
     private ConnectionMaker connectionMaker;
 
@@ -17,23 +28,6 @@ public class UserDao {
     // 수정자 메소드를 이용한 의존관계 주입
     public void setConnectionMaker(ConnectionMaker connectionMaker){
         this.connectionMaker = connectionMaker; 
-    }
-
-    // 사용자 생성
-    public void add(User user) throws ClassNotFoundException, SQLException{
-
-        Connection c = connectionMaker.makeConnection();
-
-        // SQL을 담은 Statement를 실행
-        PreparedStatement ps = c.prepareStatement("insert into users (id, name, password) values (?, ?, ?)");
-        ps.setString(1, user.getId());
-        ps.setString(2, user.getName());
-        ps.setString(3, user.getPassword());
-
-        ps.executeUpdate();
-
-        ps.close();
-        c.close();
     }
 
     // 사용자 조회

@@ -53,4 +53,9 @@ public class UserDao {
 
         return user;
     }
+
+    public void deleteAll() throws SQLException {
+        this.jdbcContext.executeSql("delete from users");
+    }
+
 }
